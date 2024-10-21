@@ -7,17 +7,26 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ProductCRUD productCRUD = new ProductCRUD();
         boolean exit = false;
-
+        
+//      added a while statement for when you are not exit and made cases for the choices you could make
+//      
+//      Hier pas ik iteratie  toe van het imperatief programmeren
+//      door middel van een while statement toe te passen waar nadat je niet exit het herhaalt  
         while (!exit) {
-            System.out.println("\nProduct Management System");
+            System.out.println("\nPikmin Application");
+            //TODO only when logged in as admin case 1,3,4
             System.out.println("1. Add Product");
             System.out.println("2. View Products");
             System.out.println("3. Update Product");
             System.out.println("4. Delete Product");
+            
             System.out.println("5. Exit");
+            System.out.println("6. Login");
+            System.out.println("7. Add item to cart");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
 
+//          Hier pas ik 1.4 imperatief programmeren toe in de form van selectie
             switch (choice) {
                 case 1:
                     System.out.print("Enter product name: ");
@@ -29,7 +38,7 @@ public class Main {
                     System.out.print("Enter product stock: ");
                     int stock = scanner.nextInt();
                     System.out.print("Enter product price: ");
-                    double price = scanner.nextDouble();
+                    float price = scanner.nextFloat();
                     productCRUD.createProduct(name, origin, harvestDate, stock, price);
                     break;
 
@@ -49,7 +58,7 @@ public class Main {
                     System.out.print("Enter new product stock: ");
                     int newStock = scanner.nextInt();
                     System.out.print("Enter new product price: ");
-                    double newPrice = scanner.nextDouble();
+                    float newPrice = scanner.nextFloat();
                     productCRUD.updateProduct(updateId, newName, newOrigin, newHarvestDate, newStock, newPrice);
                     break;
 
@@ -63,6 +72,22 @@ public class Main {
                     exit = true;
                     System.out.println("Exiting the application.");
                     break;
+                    
+                case 6:
+                    // Invoke the login functionality from LoginApp class
+                    boolean loggedIn = Login.login();
+                    if (loggedIn) {
+                        System.out.println("Proceed to protected area...");
+                    } else {
+                    	System.out.print("Enter username: ");
+                        String enteredUsername = scanner.nextLine();
+                        System.out.print("Enter password: ");
+                        String enteredPassword = scanner.nextLine();
+                    }
+                    break;
+                 
+                case 7:
+                	//ShoppingCart Case
 
                 default:
                     System.out.println("Invalid choice, please try again.");

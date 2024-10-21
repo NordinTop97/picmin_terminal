@@ -20,6 +20,8 @@ public class ProductCRUD {
     }
 
     // Read and display all products
+    
+//    hier pas ik sequentie toe in de form van if statements
     public void readProducts() {
         if (products.isEmpty()) {
             System.out.println("No products found.");
@@ -31,11 +33,11 @@ public class ProductCRUD {
     }
 
     // Update an existing product
-    public void updateProduct(int id, String newName, String origin, int newHarvestDate, int newStock, double newPrice) {
+    public void updateProduct(int id, String newName, String newOrigin, int newHarvestDate, int newStock, double newPrice) {
         for (Product product : products) {
             if (product.getId() == id) {
                 product.setName(newName);
-                product.setOrigin(origin);
+                product.setOrigin(newOrigin);
                 product.setHarvestDate(newHarvestDate);
                 product.setStock(newStock);
                 product.setPrice(newPrice);
@@ -46,7 +48,7 @@ public class ProductCRUD {
         System.out.println("Product not found.");
     }
 
-    // Delete a product by ID
+    // Delete a product using it's ID
     public void deleteProduct(int id) {
         for (Product product : products) {
             if (product.getId() == id) {

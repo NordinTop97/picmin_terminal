@@ -6,9 +6,9 @@ public class Product {
     private String origin;
     private int harvestDate;
     private int stock;
-    private double price;
+    private float price;
 
-	public Product(int id, String name, String origin, int harvestDate, int stock, double price) {
+	public Product(int id, String name, String origin, int harvestDate, int stock, float price) {
         this.id = id;
         this.name = name;
         this.origin = origin;
@@ -53,11 +53,11 @@ public class Product {
 		this.stock = stock;
 	}
 
-    public double getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
