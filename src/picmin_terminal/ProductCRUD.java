@@ -13,7 +13,7 @@ public class ProductCRUD {
     }
 
     // Create a new product
-    public void createProduct(String name, String origin, int harvestDate, int stock, double price) {
+    public void createProduct(String name, String origin, int harvestDate, int stock, float price) {
         Product newProduct = new Product(nextId++, name, origin, harvestDate, stock, price);
         products.add(newProduct);
         System.out.println("Product added successfully!");

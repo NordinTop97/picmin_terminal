@@ -3,8 +3,10 @@ package picmin_terminal;
 import java.util.Scanner;
 
 public class Main {
+	public static Scanner scanner = new Scanner(System.in);
+	public static User loggedInUser = null;
+	
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         ProductCRUD productCRUD = new ProductCRUD();
         boolean exit = false;
         
@@ -19,16 +21,21 @@ public class Main {
             System.out.println("2. View Products");
             System.out.println("3. Update Product");
             System.out.println("4. Delete Product");
-            
             System.out.println("5. Exit");
             System.out.println("6. Login");
             System.out.println("7. Add item to cart");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
+            scanner.nextLine();
 
 //          Hier pas ik 1.4 imperatief programmeren toe in de form van selectie
             switch (choice) {
+            
                 case 1:
+                	if(!isLoggedIn()) {
+                		System.out.println("You do not have permission.");
+                		break;
+                	}
                     System.out.print("Enter product name: ");
                     String name = scanner.next();
                     System.out.print("Enter product origin: ");
@@ -75,14 +82,16 @@ public class Main {
                     
                 case 6:
                     // Invoke the login functionality from LoginApp class
-                    boolean loggedIn = Login.login();
-                    if (loggedIn) {
+                    User loginInformation = Login.getLoginInfo();
+//                    loggedInUser != null;
+//                    TODO: loggedInUser = login.Login
+//                    loggedInUser != null
+                    User account = Login.validateCredentials(loginInformation);
+                    loggedInUser = account;
+                    if (account != null) {
                         System.out.println("Proceed to protected area...");
                     } else {
-                    	System.out.print("Enter username: ");
-                        String enteredUsername = scanner.nextLine();
-                        System.out.print("Enter password: ");
-                        String enteredPassword = scanner.nextLine();
+                        System.out.println("Access denied. Try again.");
                     }
                     break;
                  
@@ -93,7 +102,11 @@ public class Main {
                     System.out.println("Invalid choice, please try again.");
             }
         }
-
+        
+       
         scanner.close();
+    }
+    public static boolean isLoggedIn() {
+    	return loggedInUser != null;
     }
 }

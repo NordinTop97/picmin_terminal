@@ -1,6 +1,6 @@
 package picmin_terminal;
 
 public enum UserType {
-	KLANT,
+	CUSTOMER,
 	ADMIN;
 }
