@@ -16,7 +16,6 @@ public class Main {
 //      door middel van een while statement toe te passen waar nadat je niet exit het herhaalt  
         while (!exit) {
             System.out.println("\nPikmin Application");
-            //TODO only when logged in as admin case 1,3,4
             System.out.println("1. Add Product");
             System.out.println("2. View Products");
             System.out.println("3. Update Product");
@@ -54,6 +53,10 @@ public class Main {
                     break;
 
                 case 3:
+                	if(!isLoggedIn()) {
+                		System.out.println("You do not have permission.");
+                		break;
+                	}
                     System.out.print("Enter product ID to update: ");
                     int updateId = scanner.nextInt();
                     System.out.print("Enter new product name: ");
@@ -70,6 +73,10 @@ public class Main {
                     break;
 
                 case 4:
+                	if(!isLoggedIn()) {
+                		System.out.println("You do not have permission.");
+                		break;
+                	}
                     System.out.print("Enter product ID to delete: ");
                     int deleteId = scanner.nextInt();
                     productCRUD.deleteProduct(deleteId);
@@ -83,9 +90,7 @@ public class Main {
                 case 6:
                     // Invoke the login functionality from LoginApp class
                     User loginInformation = Login.getLoginInfo();
-//                    loggedInUser != null;
-//                    TODO: loggedInUser = login.Login
-//                    loggedInUser != null
+
                     User account = Login.validateCredentials(loginInformation);
                     loggedInUser = account;
                     if (account != null) {
